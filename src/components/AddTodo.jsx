@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-
 import { useState } from "react";
 
 const AddTodo = ({ setToDoList }) => {
@@ -40,8 +39,8 @@ const AddTodo = ({ setToDoList }) => {
                 placeholder="todo..."
                 name="toDoInputArea"
                 id="toDoId"
-                cols={inputLength.length > 30 ? 40 : 30}
-                rows={inputLength.length > 30 ? 4 : 1}
+                cols={40}
+                rows={inputLength.length > 30 ? 5 : 1}
                 value={userInputs.todo}
                 onChange={onChangeHandler}
             />
