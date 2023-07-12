@@ -18,10 +18,10 @@ An app where you can add items to the to-do list by typing them in and clicking 
 
 # for future:
 
-1- let user edit todo
-2- theme
-3- store data in database
-4- share todo to others
-5- sorted by
-6-user login and sign up
-7- more.... coming soon
+-   let user edit todo
+-   theme
+-   store data in database
+-   share todo to others
+-   sorted by
+-   user login and sign up
+-   more.... coming soon
