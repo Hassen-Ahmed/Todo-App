@@ -169,6 +169,22 @@ body {
     transform: scale(1.2);
 }
 
+.github-log {
+    margin: 2rem;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.github-log a {
+    color: #4a4a4a;
+}
+.github-log p {
+    margin: 0 1rem;
+    font-size: 1.2rem;
+    color: #4a4a4a;
+}
+
 /* media query start here... */
 
 @media screen and (max-width: 900px) {
