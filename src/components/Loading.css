@@ -1,0 +1,31 @@
+.loading {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+ul li {
+  font-size: 1.4rem;
+}
+.heart-1 {
+  animation-name: heartBite;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+}
+
+@keyframes heartBite {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
