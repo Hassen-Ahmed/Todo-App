@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
+import { AiOutlineCheckCircle } from "react-icons/ai";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { deleteTodoById, patchTodoById } from "../utils/api.js";
-import toasterForTodo from "../utils/constant.js";
+import toast from "react-hot-toast";
 
 function isCheckHandler(toDoItem, setIsChecked, setIsRender) {
   patchTodoById(toDoItem["_id"], !toDoItem.isDone).then(() => {
@@ -11,14 +12,22 @@ function isCheckHandler(toDoItem, setIsChecked, setIsRender) {
     setIsChecked((currenIsChecked) => {
       return currenIsChecked ? false : true;
     });
-    toasterForTodo(!toDoItem.isDone ? "Checked!" : "Unchecked!");
+    toast(!toDoItem.isDone ? "Checked!" : "Unchecked!", {
+      duration: 2000,
+      position: "top-center",
+      icon: <AiOutlineCheckCircle size={25} color="green" />,
+    });
   });
 }
 
 function deleteHandler(toDoItem, setIsRender) {
   deleteTodoById(toDoItem["_id"]).then(() => {
     setIsRender((prevValue) => !prevValue);
-    toasterForTodo("Successfuly deleted!");
+    toast("Successfuly deleted!", {
+      duration: 2000,
+      position: "top-center",
+      icon: <MdDeleteForever size={25} color="red" />,
+    });
   });
 }
 
