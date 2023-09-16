@@ -6,7 +6,6 @@ import { BsGithub } from "react-icons/bs";
 import "./App.css";
 import { getAllTodo } from "./utils/api.js";
 import Timer from "./components/Timer";
-import Loading from "./components/Loading";
 
 function getAllTodoHandler(setToDoList) {
   getAllTodo()
