@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { postTodo } from "../utils/api.js";
+import toasterForTodo from "../utils/constant.js";
 
 function addTodoHandler(
   userInputs,
@@ -19,8 +20,9 @@ function addTodoHandler(
       isDone: false,
     });
 
-    postTodo(userInputs).then((data) => {
+    postTodo(userInputs).then(() => {
       getAllTodoHandler(setToDoList);
+      toasterForTodo("Successfuly added!");
     });
   }
 }

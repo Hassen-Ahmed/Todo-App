@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import AddTodo from "./components/AddTodo";
 import TodoList from "./components/TodoList";
 import { BsGithub } from "react-icons/bs";
-
-import "./App.css";
 import { getAllTodo } from "./utils/api.js";
 import Timer from "./components/Timer";
+import "./App.css";
+import { Toaster } from "react-hot-toast";
 
 function getAllTodoHandler(setToDoList) {
   getAllTodo()
@@ -30,6 +30,7 @@ function App() {
   return (
     <main className="app">
       <Timer />
+      <Toaster />
       <AddTodo
         setToDoList={setToDoList}
         getAllTodoHandler={getAllTodoHandler}

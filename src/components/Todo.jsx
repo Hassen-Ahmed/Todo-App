@@ -3,6 +3,7 @@ import { useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { deleteTodoById, patchTodoById } from "../utils/api.js";
+import toasterForTodo from "../utils/constant.js";
 
 function isCheckHandler(toDoItem, setIsChecked, setIsRender) {
   patchTodoById(toDoItem["_id"], !toDoItem.isDone).then(() => {
@@ -10,12 +11,14 @@ function isCheckHandler(toDoItem, setIsChecked, setIsRender) {
     setIsChecked((currenIsChecked) => {
       return currenIsChecked ? false : true;
     });
+    toasterForTodo(!toDoItem.isDone ? "Checked!" : "Unchecked!");
   });
 }
 
 function deleteHandler(toDoItem, setIsRender) {
   deleteTodoById(toDoItem["_id"]).then(() => {
     setIsRender((prevValue) => !prevValue);
+    toasterForTodo("Successfuly deleted!");
   });
 }
 
