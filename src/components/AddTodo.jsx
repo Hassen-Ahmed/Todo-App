@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { postTodo } from "../utils/api.js";
-import toasterForTodo from "../utils/constant.js";
+import { AiOutlineCheckCircle } from "react-icons/ai";
+import toast from "react-hot-toast";
 
 function addTodoHandler(
   userInputs,
@@ -22,7 +23,11 @@ function addTodoHandler(
 
     postTodo(userInputs).then(() => {
       getAllTodoHandler(setToDoList);
-      toasterForTodo("Successfuly added!");
+      toast("Successfuly added!", {
+        duration: 2000,
+        position: "top-center",
+        icon: <AiOutlineCheckCircle size={25} color="green" />,
+      });
     });
   }
 }
