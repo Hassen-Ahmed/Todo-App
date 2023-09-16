@@ -1,6 +1,36 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { postTodo } from "../utils/api";
+import { postTodo } from "../utils/api.js";
+
+function addTodoHandler(
+  userInputs,
+  setToDoList,
+  setUserInput,
+  getAllTodoHandler
+) {
+  if (userInputs.todo !== "") {
+    setToDoList((currentTodoList) => {
+      return [userInputs, ...currentTodoList];
+    });
+
+    setUserInput({
+      todo: "",
+      date: new Date().toLocaleDateString(),
+      isDone: false,
+    });
+
+    postTodo(userInputs).then((data) => {
+      getAllTodoHandler(setToDoList);
+    });
+  }
+}
+
+function onChangeHandler(e, setInputLength, setUserInput) {
+  setInputLength(e.target.value);
+  setUserInput((currentValue) => {
+    return { ...currentValue, todo: e.target.value, isDone: false };
+  });
+}
 
 const AddTodo = ({ setToDoList, getAllTodoHandler }) => {
   const [userInputs, setUserInput] = useState({
@@ -9,31 +39,6 @@ const AddTodo = ({ setToDoList, getAllTodoHandler }) => {
     isDone: false,
   });
   const [inputLength, setInputLength] = useState("");
-
-  function addTodoHandler() {
-    if (userInputs.todo !== "") {
-      setToDoList((currentTodoList) => {
-        return [userInputs, ...currentTodoList];
-      });
-
-      setUserInput({
-        todo: "",
-        date: new Date().toLocaleDateString(),
-        isDone: false,
-      });
-
-      postTodo(userInputs).then((data) => {
-        getAllTodoHandler();
-      });
-    }
-  }
-
-  function onChangeHandler(e) {
-    setInputLength(e.target.value);
-    setUserInput((currentValue) => {
-      return { ...currentValue, todo: e.target.value, isDone: false };
-    });
-  }
 
   return (
     <div className="add-todo">
@@ -50,9 +55,19 @@ const AddTodo = ({ setToDoList, getAllTodoHandler }) => {
         cols={40}
         rows={inputLength.length > 30 ? 5 : 1}
         value={userInputs.todo}
-        onChange={onChangeHandler}
+        onChange={(e) => onChangeHandler(e, setInputLength, setUserInput)}
       />
-      <button id="button__todo" onClick={addTodoHandler}>
+      <button
+        id="button__todo"
+        onClick={() =>
+          addTodoHandler(
+            userInputs,
+            setToDoList,
+            setUserInput,
+            getAllTodoHandler
+          )
+        }
+      >
         +
       </button>
     </div>

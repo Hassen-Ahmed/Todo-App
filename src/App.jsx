@@ -4,27 +4,27 @@ import TodoList from "./components/TodoList";
 import { BsGithub } from "react-icons/bs";
 
 import "./App.css";
-import { getAllTodo } from "./utils/api";
+import { getAllTodo } from "./utils/api.js";
 import Timer from "./components/Timer";
+
+function getAllTodoHandler(setToDoList) {
+  getAllTodo()
+    .then(({ todos }) => {
+      const orderTodos = todos.reverse();
+      setToDoList(orderTodos);
+    })
+    .catch((err) => {
+      console.log(err);
+      setToDoList([]);
+    });
+}
 
 function App() {
   const [toDoList, setToDoList] = useState([]);
   const [isRender, setIsRender] = useState(false);
 
-  function getAllTodoHandler() {
-    getAllTodo()
-      .then(({ todos }) => {
-        const orderTodos = todos.reverse();
-        setToDoList(orderTodos);
-      })
-      .catch((err) => {
-        console.log(err);
-        setToDoList([]);
-      });
-  }
-
   useEffect(() => {
-    getAllTodoHandler();
+    getAllTodoHandler(setToDoList);
   }, [isRender]);
 
   return (

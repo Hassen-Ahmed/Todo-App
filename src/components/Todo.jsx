@@ -2,37 +2,37 @@
 import { useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
 import { BsFillCheckCircleFill } from "react-icons/bs";
-import { deleteTodoById, patchTodoById } from "../utils/api";
+import { deleteTodoById, patchTodoById } from "../utils/api.js";
 
-const Todo = ({ todo, date, setToDoList, toDoItem, color, setIsRender }) => {
+function isCheckHandler(toDoItem, setIsChecked, setIsRender) {
+  patchTodoById(toDoItem["_id"], !toDoItem.isDone).then(() => {
+    setIsRender((prevValue) => !prevValue);
+    setIsChecked((currenIsChecked) => {
+      return currenIsChecked ? false : true;
+    });
+  });
+}
+
+function deleteHandler(toDoItem, setIsRender) {
+  deleteTodoById(toDoItem["_id"]).then(() => {
+    setIsRender((prevValue) => !prevValue);
+  });
+}
+
+function isLessHandler(setIsLess) {
+  setIsLess((currentValue) => {
+    return currentValue ? false : true;
+  });
+}
+
+const Todo = ({ todo, date, toDoItem, color, setIsRender }) => {
   const [isChecked, setIsChecked] = useState(toDoItem.isDone);
   const [isLess, setIsLess] = useState(true);
-
-  function isCheckHandler() {
-    patchTodoById(toDoItem["_id"], !toDoItem.isDone).then(() => {
-      setIsRender((prevValue) => !prevValue);
-      setIsChecked((currenIsChecked) => {
-        return currenIsChecked ? false : true;
-      });
-    });
-  }
-
-  function deleteHandler() {
-    deleteTodoById(toDoItem["_id"]).then(() => {
-      setIsRender((prevValue) => !prevValue);
-    });
-  }
-
-  function isLessHandler() {
-    setIsLess((currentValue) => {
-      return currentValue ? false : true;
-    });
-  }
 
   return (
     <section className="todo" style={{ backgroundColor: color }}>
       {todo.length > 100 ? (
-        <button onClick={isLessHandler}>
+        <button onClick={() => isLessHandler(setIsLess)}>
           See {isLess ? "more" : "less"}...
         </button>
       ) : (
@@ -46,10 +46,13 @@ const Todo = ({ todo, date, setToDoList, toDoItem, color, setIsRender }) => {
       </p>
       <p className="todo__date">{date}</p>
       <div className="todo__btn--bottom">
-        <MdDeleteForever className="btn--delete" onClick={deleteHandler} />
+        <MdDeleteForever
+          className="btn--delete"
+          onClick={() => deleteHandler(toDoItem, setIsRender)}
+        />
         <BsFillCheckCircleFill
           className="btn--check"
-          onClick={isCheckHandler}
+          onClick={() => isCheckHandler(toDoItem, setIsChecked, setIsRender)}
         />
       </div>
     </section>

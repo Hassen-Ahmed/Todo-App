@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const todoApi = axios.create({
-  // baseURL: "http://localhost:3000/",
-  baseURL: "https://todo-app-mongodb-vxfw.onrender.com/",
+  baseURL: "https://api-todo-app-vqgm.onrender.com",
 });
 
 export const getAllTodo = () => {
