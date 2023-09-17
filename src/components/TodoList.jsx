@@ -1,14 +1,34 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Todo from "./Todo";
-import Loading from "./Loading";
+import Loading from "./notifications/Loading";
+import { getAllTodo } from "../utils/api";
+import { TodoContext } from "../context/ContextTodo";
 
-const TodoList = ({ list, setToDoList, setIsRender }) => {
+function getAllTodoHandler(setToDoList, setIsLoading) {
+  getAllTodo()
+    .then(({ todos }) => {
+      const orderTodos = todos.reverse();
+      setToDoList(orderTodos);
+      setIsLoading(false);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+const TodoList = () => {
+  const { isRender, setIsRender, setIsLoading } = useContext(TodoContext);
   const [color, setColor] = useState("#a9a29c84");
+  const [toDoList, setToDoList] = useState([]);
+
+  useEffect(() => {
+    getAllTodoHandler(setToDoList, setIsLoading);
+  }, [isRender]);
 
   return (
     <section className="todo-list">
-      {list.length ? (
+      {toDoList.length ? (
         <>
           <div className="todo-list__color">
             <div
@@ -37,7 +57,7 @@ const TodoList = ({ list, setToDoList, setIsRender }) => {
             ></div>
           </div>
 
-          {list.map((toDoItem) => {
+          {toDoList.map((toDoItem) => {
             return (
               <Todo
                 key={`${toDoItem["_id"]}`}
