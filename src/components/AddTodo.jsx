@@ -1,32 +1,26 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { postTodo } from "../utils/api.js";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import toast from "react-hot-toast";
+import { TodoContext } from "../context/ContextTodo.jsx";
 
-function addTodoHandler(
-  userInputs,
-  setToDoList,
-  setUserInput,
-  getAllTodoHandler
-) {
+function addTodoHandler(userInputs, setUserInput, setIsRender) {
   if (userInputs.todo !== "") {
-    setToDoList((currentTodoList) => {
-      return [userInputs, ...currentTodoList];
-    });
-
-    setUserInput({
-      todo: "",
-      date: new Date().toLocaleDateString(),
-      isDone: false,
-    });
-
     postTodo(userInputs).then(() => {
-      getAllTodoHandler(setToDoList);
+      setIsRender((preValue) => {
+        return !preValue;
+      });
       toast("Successfuly added!", {
         duration: 2000,
         position: "top-center",
         icon: <AiOutlineCheckCircle size={25} color="green" />,
+      });
+
+      setUserInput({
+        todo: "",
+        date: new Date().toLocaleDateString(),
+        isDone: false,
       });
     });
   }
@@ -39,7 +33,8 @@ function onChangeHandler(e, setInputLength, setUserInput) {
   });
 }
 
-const AddTodo = ({ setToDoList, getAllTodoHandler }) => {
+const AddTodo = () => {
+  const { setIsRender, isLoading } = useContext(TodoContext);
   const [userInputs, setUserInput] = useState({
     todo: "",
     date: new Date().toLocaleDateString(),
@@ -56,7 +51,7 @@ const AddTodo = ({ setToDoList, getAllTodoHandler }) => {
         add your todo:
       </label>
       <textarea
-        placeholder="todo..."
+        placeholder={`${isLoading ? "Waitig..." : "todo..."}`}
         name="toDoInputArea"
         id="toDoId"
         cols={40}
@@ -64,19 +59,14 @@ const AddTodo = ({ setToDoList, getAllTodoHandler }) => {
         value={userInputs.todo}
         onChange={(e) => onChangeHandler(e, setInputLength, setUserInput)}
       />
-      <button
-        id="button__todo"
-        onClick={() =>
-          addTodoHandler(
-            userInputs,
-            setToDoList,
-            setUserInput,
-            getAllTodoHandler
-          )
-        }
-      >
-        +
-      </button>
+      {!isLoading ? (
+        <button
+          id="button__todo"
+          onClick={() => addTodoHandler(userInputs, setUserInput, setIsRender)}
+        >
+          +
+        </button>
+      ) : null}
     </div>
   );
 };
