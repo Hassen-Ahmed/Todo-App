@@ -1,11 +1,22 @@
 /* eslint-disable react/prop-types */
 import { useContext, useState } from "react";
-import { postTodo } from "../utils/api.js";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import toast from "react-hot-toast";
-import { TodoContext } from "../context/ContextTodo.jsx";
+import { TodoContext } from "../../context/ContextTodo.js";
+import { postTodo } from "../../utils/api.js";
 
-function addTodoHandler(userInputs, setUserInput, setIsRender) {
+interface UserInputs {
+  todo: string;
+  date: number | string;
+  isDone: boolean;
+  _id?: string;
+}
+
+function addTodoHandler(
+  userInputs: UserInputs,
+  setUserInput: React.Dispatch<React.SetStateAction<UserInputs>>,
+  setIsRender: React.Dispatch<React.SetStateAction<boolean>>
+) {
   if (userInputs.todo !== "") {
     postTodo(userInputs).then(() => {
       setIsRender((preValue) => {
@@ -26,7 +37,11 @@ function addTodoHandler(userInputs, setUserInput, setIsRender) {
   }
 }
 
-function onChangeHandler(e, setInputLength, setUserInput) {
+function onChangeHandler(
+  e: React.ChangeEvent<HTMLTextAreaElement>,
+  setInputLength: React.Dispatch<React.SetStateAction<string>>,
+  setUserInput: React.Dispatch<React.SetStateAction<UserInputs>>
+) {
   setInputLength(e.target.value);
   setUserInput((currentValue) => {
     return { ...currentValue, todo: e.target.value, isDone: false };
@@ -35,7 +50,7 @@ function onChangeHandler(e, setInputLength, setUserInput) {
 
 const AddTodo = () => {
   const { setIsRender, isLoading } = useContext(TodoContext);
-  const [userInputs, setUserInput] = useState({
+  const [userInputs, setUserInput] = useState<UserInputs>({
     todo: "",
     date: new Date().toLocaleDateString(),
     isDone: false,

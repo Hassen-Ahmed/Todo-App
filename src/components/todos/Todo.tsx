@@ -3,10 +3,29 @@ import { useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { BsFillCheckCircleFill } from "react-icons/bs";
-import { deleteTodoById, patchTodoById } from "../utils/api.js";
+import { deleteTodoById, patchTodoById } from "../../utils/api";
 import toast from "react-hot-toast";
 
-function isCheckHandler(toDoItem, setIsChecked, setIsRender) {
+interface Todos {
+  todo: string;
+  date: number;
+  isDone: boolean;
+  _id?: string | number;
+}
+
+interface TodoProps {
+  todo: string;
+  date: number;
+  toDoItem: Todos;
+  color: string;
+  setIsRender: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function isCheckHandler(
+  toDoItem: Todos,
+  setIsChecked: React.Dispatch<React.SetStateAction<boolean>>,
+  setIsRender: React.Dispatch<React.SetStateAction<boolean>>
+) {
   patchTodoById(toDoItem["_id"], !toDoItem.isDone).then(() => {
     setIsRender((prevValue) => !prevValue);
     setIsChecked((currenIsChecked) => {
@@ -20,7 +39,10 @@ function isCheckHandler(toDoItem, setIsChecked, setIsRender) {
   });
 }
 
-function deleteHandler(toDoItem, setIsRender) {
+function deleteHandler(
+  toDoItem: Todos,
+  setIsRender: React.Dispatch<React.SetStateAction<boolean>>
+) {
   deleteTodoById(toDoItem["_id"]).then(() => {
     setIsRender((prevValue) => !prevValue);
     toast("Successfuly deleted!", {
@@ -31,14 +53,16 @@ function deleteHandler(toDoItem, setIsRender) {
   });
 }
 
-function isLessHandler(setIsLess) {
+function isLessHandler(
+  setIsLess: React.Dispatch<React.SetStateAction<boolean>>
+) {
   setIsLess((currentValue) => {
     return currentValue ? false : true;
   });
 }
 
-const Todo = ({ todo, date, toDoItem, color, setIsRender }) => {
-  const [isChecked, setIsChecked] = useState(toDoItem.isDone);
+const Todo = ({ todo, date, toDoItem, color, setIsRender }: TodoProps) => {
+  const [isChecked, setIsChecked] = useState<boolean>(toDoItem.isDone);
   const [isLess, setIsLess] = useState(true);
 
   return (

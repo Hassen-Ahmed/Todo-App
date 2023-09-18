@@ -1,9 +1,9 @@
-import AddTodo from "./components/AddTodo";
-import TodoList from "./components/TodoList";
+import AddTodo from "./components/todos/AddTodo";
 import Timer from "./components/Timer";
 import "./App.css";
 import { Toaster } from "react-hot-toast";
 import Footer from "./components/Footer";
+import TodoList from "./components/todos/TodoList";
 
 function App() {
   return (

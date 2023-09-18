@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Timer() {
   const [currentTime, setCurrentTime] = useState(new Date().toLocaleString());

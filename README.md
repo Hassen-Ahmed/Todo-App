@@ -1,39 +1,27 @@
-# _To-do App_
+# React + TypeScript + Vite
 
-Link:
-`https://sticky-todos.netlify.app/`
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-An app where you can add items to the to-do list by typing them in and clicking a submit button.
+Currently, two official plugins are available:
 
-# FEATURES
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-- Single todo box
+## Expanding the ESLint configuration
 
-  - Text of todo.
-  - The date when it created.
-  - Delete button when you don't need any more or you already done you todo.
-  - Check button which going to be line through if you done the todo and save incase.
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Form
+- Configure the top-level `parserOptions` property like this:
 
-  - textInput for text todo also need placeHolder with label
-  - auto date generated
-  - add(+) button for submit
+```js
+   parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+   },
+```
 
-- Other
-  - The data is persistent, which means when ever the user of this app reload or close the browser tab and come back again the data will there as it was before.
-  - Data persisted after user Delete todo.
-  - Data persisted after user Check/tick todo.
-  - If todo text is more that 100 character the todo will going to squashed in to smaller character length and there will be a button provide for to see more and less.
-  - At top of every thing there is a Date counter which is help users to distinguish todo's Date and current Date.
-  - And also if the character inside textArea/input more than 100 the textArea/input will expand down.
-
-# for future:
-
-- let user edit todo
-- theme
-- store data in database
-- share todo to others
-- sorted by
-- user login and sign up
-- more.... coming soon
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list

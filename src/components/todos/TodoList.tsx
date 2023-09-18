@@ -1,14 +1,24 @@
 /* eslint-disable react/prop-types */
 import { useContext, useEffect, useState } from "react";
 import Todo from "./Todo";
-import Loading from "./notifications/Loading";
-import { getAllTodo } from "../utils/api";
-import { TodoContext } from "../context/ContextTodo";
+import Loading from "../notifications/Loading";
+import { TodoContext } from "../../context/ContextTodo";
+import { getAllTodo } from "../../utils/api";
 
-function getAllTodoHandler(setToDoList, setIsLoading) {
+interface Todos {
+  todo: string;
+  date: number;
+  isDone: boolean;
+  _id?: string | number;
+}
+
+function getAllTodoHandler(
+  setToDoList: React.Dispatch<React.SetStateAction<Todos[] | []>>,
+  setIsLoading: React.Dispatch<boolean>
+) {
   getAllTodo()
     .then(({ todos }) => {
-      const orderTodos = todos.reverse();
+      const orderTodos: Todos[] = todos.reverse();
       setToDoList(orderTodos);
       setIsLoading(false);
     })
@@ -20,7 +30,7 @@ function getAllTodoHandler(setToDoList, setIsLoading) {
 const TodoList = () => {
   const { isRender, setIsRender, setIsLoading } = useContext(TodoContext);
   const [color, setColor] = useState("#a9a29c84");
-  const [toDoList, setToDoList] = useState([]);
+  const [toDoList, setToDoList] = useState<Todos[] | []>([]);
 
   useEffect(() => {
     getAllTodoHandler(setToDoList, setIsLoading);
@@ -63,7 +73,6 @@ const TodoList = () => {
                 key={`${toDoItem["_id"]}`}
                 todo={toDoItem.todo}
                 date={toDoItem.date}
-                setToDoList={setToDoList}
                 color={color}
                 toDoItem={toDoItem}
                 setIsRender={setIsRender}
