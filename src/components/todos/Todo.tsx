@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { BsFillCheckCircleFill } from "react-icons/bs";
@@ -8,6 +8,7 @@ import { BiSolidEditAlt } from "react-icons/bi";
 import { ImCheckmark } from "react-icons/im";
 
 import toast from "react-hot-toast";
+import { TodoContext } from "../../context/ContextTodo";
 
 interface Todos {
   todo: string;
@@ -71,11 +72,18 @@ const Todo = ({ id, todo, date, toDoItem, color, setIsRender }: TodoProps) => {
   const [isLess, setIsLess] = useState(true);
   const [editedInput, setEditedInput] = useState(todo);
   const [isEdited, setIsEdited] = useState(true);
+  const { theme } = useContext(TodoContext);
 
   return (
     <section className="todo" style={{ backgroundColor: color }}>
       {todo.length > 100 ? (
-        <button onClick={() => isLessHandler(setIsLess)}>
+        <button
+          style={{
+            color: `${theme === "dark" ? "white" : "#4a4a4a"}`,
+            backgroundColor: `${theme === "dark" ? "#4a4a4a" : "#b7b7b7"}`,
+          }}
+          onClick={() => isLessHandler(setIsLess)}
+        >
           See {isLess ? "more" : "less"}...
         </button>
       ) : (
@@ -83,8 +91,10 @@ const Todo = ({ id, todo, date, toDoItem, color, setIsRender }: TodoProps) => {
       )}
       {isEdited && (
         <p
-          className="todo__todo"
-          style={{ textDecoration: `${isChecked ? "line-through" : "none"} ` }}
+          style={{
+            textDecoration: `${isChecked ? "line-through" : "none"} `,
+            color: "black",
+          }}
         >
           {isLess && editedInput.length > 100
             ? editedInput.slice(0, 60) + " ..."
@@ -100,10 +110,6 @@ const Todo = ({ id, todo, date, toDoItem, color, setIsRender }: TodoProps) => {
             value={editedInput}
             onChange={(e) => setEditedInput(e.target.value)}
             className="edit-textarea"
-            style={{
-              padding: ".5rem 1rem",
-              width: "100%",
-            }}
             rows={todo.length > 100 ? 10 : 4}
           />
           <div
@@ -121,16 +127,16 @@ const Todo = ({ id, todo, date, toDoItem, color, setIsRender }: TodoProps) => {
 
       <div className="todo__btn--bottom">
         <BiSolidEditAlt
-          className="btn--edit"
+          className={`btn--edit ${theme === "dark" && "light-btn"}`}
           onClick={() => setIsEdited(false)}
         />
 
         <MdDeleteForever
-          className="btn--delete"
+          className={`btn--delete ${theme === "dark" && "light-btn"}`}
           onClick={() => deleteHandler(toDoItem, setIsRender)}
         />
         <BsFillCheckCircleFill
-          className="btn--check"
+          className={`btn--check ${theme === "dark" && "light-btn"}`}
           onClick={() =>
             isCheckHandler(toDoItem, setIsChecked, setIsRender, editedInput)
           }
