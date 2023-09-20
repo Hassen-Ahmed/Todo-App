@@ -154,6 +154,13 @@ body {
   font-size: 1.6rem;
   display: flex;
 }
+.todo .btn--edit {
+  color: #4a4a4a;
+  transition: all 0.2s ease;
+}
+.todo .btn--edit:hover {
+  transform: scale(1.2);
+}
 .todo .btn--delete {
   color: #4a4a4a;
   transition: all 0.2s ease;
@@ -188,6 +195,7 @@ body {
 .copyright {
   font-size: 2rem;
 }
+
 /* media query start here... */
 
 @media screen and (max-width: 900px) {
