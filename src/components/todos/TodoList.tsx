@@ -28,13 +28,18 @@ function getAllTodoHandler(
 }
 
 const TodoList = () => {
-  const { isRender, setIsRender, setIsLoading } = useContext(TodoContext);
+  const { isRender, setIsRender, setIsLoading, isSortedAsd } =
+    useContext(TodoContext);
   const [color, setColor] = useState("#a9a29c84");
   const [toDoList, setToDoList] = useState<Todos[] | []>([]);
 
   useEffect(() => {
     getAllTodoHandler(setToDoList, setIsLoading);
   }, [isRender]);
+
+  useEffect(() => {
+    setToDoList((currenValue) => currenValue.reverse());
+  }, [isSortedAsd]);
 
   return (
     <section className="todo-list">
