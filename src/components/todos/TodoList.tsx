@@ -28,7 +28,7 @@ function getAllTodoHandler(
 }
 
 const TodoList = () => {
-  const { isRender, setIsRender, setIsLoading, isSortedAsd } =
+  const { isRender, setIsRender, setIsLoading, isSortedAsd, theme } =
     useContext(TodoContext);
   const [color, setColor] = useState("#a9a29c84");
   const [toDoList, setToDoList] = useState<Todos[] | []>([]);
@@ -42,7 +42,7 @@ const TodoList = () => {
   }, [isSortedAsd]);
 
   return (
-    <section className="todo-list">
+    <section className={`todo-list ${theme === "dark" && "todo-list--light"}`}>
       {toDoList.length ? (
         <>
           <div className="todo-list__color">
