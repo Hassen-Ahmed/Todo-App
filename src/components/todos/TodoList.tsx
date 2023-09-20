@@ -76,6 +76,7 @@ const TodoList = () => {
             return (
               <Todo
                 key={`${toDoItem["_id"]}`}
+                id={`${toDoItem["_id"]}`}
                 todo={toDoItem.todo}
                 date={toDoItem.date}
                 color={color}
