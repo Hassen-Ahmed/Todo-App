@@ -162,6 +162,7 @@ body {
   transform: scale(1.2);
 }
 .todo .btn--delete {
+  margin: 0 0.5rem;
   color: #4a4a4a;
   transition: all 0.2s ease;
 }
@@ -194,6 +195,29 @@ body {
 
 .copyright {
   font-size: 2rem;
+}
+.edit-ok {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 0.1rem dotted #333333;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+.edit-ok:hover {
+  transform: scale(1.2);
+}
+.edit-ok:active {
+  transform: scale(1);
+}
+.edit-textarea {
+  background-color: transparent;
+  border: 0.1rem solid rgba(0, 0, 0, 0.2);
+  outline-width: 0;
+  outline-color: transparent;
 }
 
 /* media query start here... */
