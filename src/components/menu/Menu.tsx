@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   BsSortNumericDown,
   BsSortNumericUpAlt,
@@ -13,8 +13,12 @@ export default function Menu() {
   const [isDropDown, setIsDropDown] = useState(false);
   const [isSort, setIsSort] = useState(false);
   const [isLight, setIsLight] = useState(true);
-  const { setIsSortedAsd } = useContext(TodoContext);
+  const { setIsSortedAsd, theme, setTheme } = useContext(TodoContext);
 
+  useEffect(() => {
+    document.body.style.backgroundColor =
+      theme === "dark" ? "#454545" : "#d5ccc7";
+  }, [theme]);
   return (
     <div className="menu">
       <div className={`${isDropDown ? " btn" : " origin-point"}`}>
@@ -35,7 +39,11 @@ export default function Menu() {
         className={` ${isDropDown ? "btn" : " origin-point"}`}
         onClick={() => setIsLight(!isLight)}
       >
-        {isLight ? <BsSun /> : <BsFillMoonFill />}
+        {isLight ? (
+          <BsSun onClick={() => setTheme("dark")} />
+        ) : (
+          <BsFillMoonFill onClick={() => setTheme("light")} />
+        )}
       </div>
 
       <div className="menu-btn" onClick={() => setIsDropDown(!isDropDown)}>
