@@ -29,9 +29,10 @@ export const deleteTodoById = (id: number | string | undefined) => {
 
 export const patchTodoById = (
   id: number | string | undefined,
+  todo: string,
   isDone: boolean
 ) => {
-  return todoApi.patch(`/${id}`, { isDone }).then(({ data }) => {
+  return todoApi.patch(`/${id}`, { todo, isDone }).then(({ data }) => {
     return data;
   });
 };
