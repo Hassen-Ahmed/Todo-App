@@ -5,6 +5,7 @@ import { AiOutlineCheckCircle } from "react-icons/ai";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { deleteTodoById, patchTodoById } from "../../utils/api";
 import { BiSolidEditAlt } from "react-icons/bi";
+import { ImCheckmark } from "react-icons/im";
 
 import toast from "react-hot-toast";
 
@@ -16,6 +17,7 @@ interface Todos {
 }
 
 interface TodoProps {
+  id: string | number;
   todo: string;
   date: number;
   toDoItem: Todos;
@@ -26,9 +28,10 @@ interface TodoProps {
 function isCheckHandler(
   toDoItem: Todos,
   setIsChecked: React.Dispatch<React.SetStateAction<boolean>>,
-  setIsRender: React.Dispatch<React.SetStateAction<boolean>>
+  setIsRender: React.Dispatch<React.SetStateAction<boolean>>,
+  editedInput: string
 ) {
-  patchTodoById(toDoItem["_id"], !toDoItem.isDone).then(() => {
+  patchTodoById(toDoItem["_id"], editedInput, !toDoItem.isDone).then(() => {
     setIsRender((prevValue) => !prevValue);
     setIsChecked((currenIsChecked) => {
       return currenIsChecked ? false : true;
@@ -63,9 +66,11 @@ function isLessHandler(
   });
 }
 
-const Todo = ({ todo, date, toDoItem, color, setIsRender }: TodoProps) => {
+const Todo = ({ id, todo, date, toDoItem, color, setIsRender }: TodoProps) => {
   const [isChecked, setIsChecked] = useState<boolean>(toDoItem.isDone);
   const [isLess, setIsLess] = useState(true);
+  const [editedInput, setEditedInput] = useState(todo);
+  const [isEdited, setIsEdited] = useState(true);
 
   return (
     <section className="todo" style={{ backgroundColor: color }}>
@@ -76,22 +81,59 @@ const Todo = ({ todo, date, toDoItem, color, setIsRender }: TodoProps) => {
       ) : (
         ""
       )}
-      <p
-        className="todo__todo"
-        style={{ textDecoration: `${isChecked ? "line-through" : "none"} ` }}
-      >
-        {isLess && todo.length > 100 ? todo.slice(0, 60) + " ..." : todo}
-      </p>
+      {isEdited && (
+        <p
+          className="todo__todo"
+          style={{ textDecoration: `${isChecked ? "line-through" : "none"} ` }}
+        >
+          {isLess && editedInput.length > 100
+            ? editedInput.slice(0, 60) + " ..."
+            : editedInput}
+        </p>
+      )}
       <p className="todo__date">{date}</p>
+      {isEdited || (
+        <div>
+          <textarea
+            name="edit-todo"
+            id=""
+            value={editedInput}
+            onChange={(e) => setEditedInput(e.target.value)}
+            className="edit-textarea"
+            style={{
+              padding: ".5rem 1rem",
+              width: "100%",
+            }}
+            rows={todo.length > 100 ? 10 : 4}
+          />
+          <div
+            className="edit-ok"
+            onClick={() => {
+              patchTodoById(id, editedInput, toDoItem.isDone).then(() =>
+                setIsEdited(true)
+              );
+            }}
+          >
+            <ImCheckmark />
+          </div>
+        </div>
+      )}
+
       <div className="todo__btn--bottom">
-        <BiSolidEditAlt className="btn--edit" />
+        <BiSolidEditAlt
+          className="btn--edit"
+          onClick={() => setIsEdited(false)}
+        />
+
         <MdDeleteForever
           className="btn--delete"
           onClick={() => deleteHandler(toDoItem, setIsRender)}
         />
         <BsFillCheckCircleFill
           className="btn--check"
-          onClick={() => isCheckHandler(toDoItem, setIsChecked, setIsRender)}
+          onClick={() =>
+            isCheckHandler(toDoItem, setIsChecked, setIsRender, editedInput)
+          }
         />
       </div>
     </section>
