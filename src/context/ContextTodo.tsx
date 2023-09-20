@@ -7,6 +7,8 @@ interface ContextType {
   setIsLoading: React.Dispatch<boolean>;
   isSortedAsd: boolean;
   setIsSortedAsd: React.Dispatch<React.SetStateAction<boolean>>;
+  theme: string;
+  setTheme: React.Dispatch<React.SetStateAction<string>>;
 }
 export const TodoContext = createContext<ContextType>({
   isRender: false,
@@ -15,6 +17,8 @@ export const TodoContext = createContext<ContextType>({
   setIsLoading: () => false,
   isSortedAsd: true,
   setIsSortedAsd: () => false,
+  theme: "light",
+  setTheme: () => "light",
 });
 
 export const TodoContextProvider = ({
@@ -25,6 +29,7 @@ export const TodoContextProvider = ({
   const [isRender, setIsRender] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isSortedAsd, setIsSortedAsd] = useState(true);
+  const [theme, setTheme] = useState("light");
 
   return (
     <TodoContext.Provider
@@ -35,6 +40,8 @@ export const TodoContextProvider = ({
         setIsLoading,
         isSortedAsd,
         setIsSortedAsd,
+        theme,
+        setTheme,
       }}
     >
       {children}
