@@ -4,6 +4,8 @@ import { MdDeleteForever } from "react-icons/md";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { deleteTodoById, patchTodoById } from "../../utils/api";
+import { BiSolidEditAlt } from "react-icons/bi";
+
 import toast from "react-hot-toast";
 
 interface Todos {
@@ -82,6 +84,7 @@ const Todo = ({ todo, date, toDoItem, color, setIsRender }: TodoProps) => {
       </p>
       <p className="todo__date">{date}</p>
       <div className="todo__btn--bottom">
+        <BiSolidEditAlt className="btn--edit" />
         <MdDeleteForever
           className="btn--delete"
           onClick={() => deleteHandler(toDoItem, setIsRender)}
