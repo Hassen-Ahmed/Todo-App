@@ -19,12 +19,20 @@ body {
   width: 100vw;
   padding: 3rem;
   background-color: #d5ccc7;
+  /* background-color: #454545; */
   /* background-color: #415a77; */
   font-family: "Roboto Mono", monospace;
+  transition: all 0.2s ease;
 }
+
 .app-time {
   margin: 0.4rem 1rem;
   color: #4a4a4a;
+  font-size: 1.2rem;
+}
+.app-time--light {
+  margin: 0.4rem 1rem;
+  color: #b4b4b4;
   font-size: 1.2rem;
 }
 
@@ -87,6 +95,9 @@ body {
   justify-content: center;
   align-items: flex-start;
   position: relative;
+}
+.todo-list--light {
+  background-color: #292929;
 }
 
 .todo-list__color {
@@ -154,27 +165,31 @@ body {
   font-size: 1.6rem;
   display: flex;
 }
-.todo .btn--edit {
+.btn--edit {
   color: #4a4a4a;
   transition: all 0.2s ease;
 }
-.todo .btn--edit:hover {
+.btn--edit:hover {
   transform: scale(1.2);
 }
-.todo .btn--delete {
+.btn--delete {
   margin: 0 0.5rem;
   color: #4a4a4a;
   transition: all 0.2s ease;
 }
-.todo .btn--delete:hover {
+.btn--delete:hover {
   transform: scale(1.2);
 }
-.todo .btn--check {
+.btn--check {
   color: #4a4a4a;
   transition: all 0.2s ease;
 }
-.todo .btn--check:hover {
+.btn--check:hover {
   transform: scale(1.2);
+}
+
+.light-btn {
+  color: #989898;
 }
 
 .github-log {
@@ -184,23 +199,22 @@ body {
   justify-content: center;
   align-items: center;
 }
-.github-log a {
-  color: #4a4a4a;
-}
+
 .github-log p {
   margin: 0 1rem;
   font-size: 1.2rem;
-  color: #4a4a4a;
 }
 
 .copyright {
   font-size: 2rem;
 }
 .edit-ok {
-  background-color: rgba(255, 255, 255, 0.7);
-  border: 0.1rem dotted #333333;
-  width: 2rem;
-  height: 2rem;
+  background-color: #989898;
+  color: white;
+  border: 0.1rem dotted #000000;
+
+  width: 1.5rem;
+  height: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -218,8 +232,14 @@ body {
   border: 0.1rem solid rgba(0, 0, 0, 0.2);
   outline-width: 0;
   outline-color: transparent;
+  padding: 0.5rem 1rem;
+  width: 100%;
 }
 
+.see-more-- {
+  color: #333333;
+  background-color: orange;
+}
 /* media query start here... */
 
 @media screen and (max-width: 900px) {
