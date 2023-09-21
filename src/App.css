@@ -130,7 +130,7 @@ body {
   margin-bottom: 40px;
   padding: 20px 40px;
   padding-bottom: 50px;
-  background-color: #a9a29c84;
+  /* background-color: #a9a29c84; */
   /* background-color: #d5ccc7; */
   position: relative;
   flex-grow: 1;
@@ -157,6 +157,7 @@ body {
   bottom: 0;
   right: 0;
   padding: 0.2rem 0.5rem;
+  color: #333333;
 }
 .todo .todo__btn--bottom {
   position: absolute;
