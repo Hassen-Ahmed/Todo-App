@@ -49,7 +49,7 @@ const TodoList = () => {
             <div
               className="div-1"
               onClick={() => {
-                setColor("#d5ccc7");
+                setColor("#a9a29c84");
               }}
             ></div>
             <div
