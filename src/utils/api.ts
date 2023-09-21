@@ -5,7 +5,7 @@ const todoApi = axios.create({
 });
 
 export const getAllTodo = () => {
-  return todoApi.get("/").then(({ data }) => {
+  return todoApi.get("/todo").then(({ data }) => {
     return data;
   });
 };
@@ -18,13 +18,13 @@ interface Todo {
 }
 
 export const postTodo = ({ todo, date = Date.now(), isDone }: Todo) => {
-  return todoApi.post(`/`, { todo, date, isDone }).then(({ data }) => {
+  return todoApi.post(`/todo`, { todo, date, isDone }).then(({ data }) => {
     return data;
   });
 };
 
 export const deleteTodoById = (id: number | string | undefined) => {
-  return todoApi.delete(`/${id}`);
+  return todoApi.delete(`/todo/${id}`);
 };
 
 export const patchTodoById = (
@@ -32,7 +32,7 @@ export const patchTodoById = (
   todo: string,
   isDone: boolean
 ) => {
-  return todoApi.patch(`/${id}`, { todo, isDone }).then(({ data }) => {
+  return todoApi.patch(`/todo/${id}`, { todo, isDone }).then(({ data }) => {
     return data;
   });
 };
