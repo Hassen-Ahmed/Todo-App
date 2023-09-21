@@ -37,13 +37,14 @@ export default function Menu() {
 
       <div
         className={` ${isDropDown ? "btn" : " origin-point"}`}
-        onClick={() => setIsLight(!isLight)}
+        onClick={() => {
+          setTheme((prevTheme) => {
+            return prevTheme === "dark" ? "light" : "dark";
+          });
+          setIsLight(!isLight);
+        }}
       >
-        {isLight ? (
-          <BsSun onClick={() => setTheme("dark")} />
-        ) : (
-          <BsFillMoonFill onClick={() => setTheme("light")} />
-        )}
+        {isLight ? <BsSun /> : <BsFillMoonFill />}
       </div>
 
       <div className="menu-btn" onClick={() => setIsDropDown(!isDropDown)}>
