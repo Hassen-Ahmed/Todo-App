@@ -11,10 +11,20 @@ export default function LogIn() {
     >
       <div className="login-form">
         <label htmlFor="username">Username</label>
-        <input type="text" placeholder="Username" />
+        <input
+          type="text"
+          id="username"
+          autoComplete="username"
+          placeholder="Username"
+        />
 
         <label htmlFor="password">Password</label>
-        <input type="password" placeholder="Passwrod" />
+        <input
+          type="password"
+          id="password"
+          autoComplete="current-password"
+          placeholder="Passwrod"
+        />
 
         <Link to="/todo">
           <button>LogIn</button>
