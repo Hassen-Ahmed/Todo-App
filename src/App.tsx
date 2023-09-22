@@ -11,6 +11,7 @@ const Profile = lazy(() => import("./components/profile/Profile"));
 const SignLogIn = lazy(() => import("./components/signlogin/SignLogIn"));
 const TodoList = lazy(() => import("./components/todos/TodoList"));
 const Signup = lazy(() => import("./components/signlogin/Signup"));
+const LogIn = lazy(() => import("./components/signlogin/LogIn"));
 
 function App() {
   return (
