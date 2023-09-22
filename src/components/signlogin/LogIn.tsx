@@ -16,7 +16,7 @@ export default function LogIn() {
         <label htmlFor="password">Password</label>
         <input type="password" placeholder="Passwrod" />
 
-        <Link className="login-btn" to="/todo">
+        <Link to="/todo">
           <button>LogIn</button>
         </Link>
       </div>
