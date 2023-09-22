@@ -12,13 +12,28 @@ export default function Signup() {
     >
       <div className="signup-form">
         <label htmlFor="username">Username</label>
-        <input type="text" placeholder="Username" />
+        <input
+          type="text"
+          id="username"
+          autoComplete="username"
+          placeholder="Username"
+        />
 
         <label htmlFor="password">Password</label>
-        <input type="password" placeholder="Passwrod" />
+        <input
+          type="password"
+          id="password"
+          autoComplete="current-password"
+          placeholder="Passwrod"
+        />
 
         <label htmlFor="confirmPassword">Confirm Password</label>
-        <input type="password" placeholder="Confirm Password" />
+        <input
+          type="password"
+          id="confirmPassword"
+          autoComplete="current-password"
+          placeholder="Confirm Password"
+        />
 
         <Link className="singup-btn" to="/login">
           <button>SignUp</button>
