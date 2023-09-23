@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 interface ContextType {
   isRender: boolean;
@@ -9,6 +9,8 @@ interface ContextType {
   setIsSortedAsd: React.Dispatch<React.SetStateAction<boolean>>;
   theme: string;
   setTheme: React.Dispatch<React.SetStateAction<string>>;
+  IsTherUserId: string;
+  setIsTherUserId: React.Dispatch<React.SetStateAction<string>>;
 }
 export const TodoContext = createContext<ContextType>({
   isRender: false,
@@ -19,6 +21,8 @@ export const TodoContext = createContext<ContextType>({
   setIsSortedAsd: () => false,
   theme: "light",
   setTheme: () => "light",
+  IsTherUserId: "",
+  setIsTherUserId: () => "",
 });
 
 export const TodoContextProvider = ({
@@ -30,6 +34,7 @@ export const TodoContextProvider = ({
   const [isLoading, setIsLoading] = useState(true);
   const [isSortedAsd, setIsSortedAsd] = useState(true);
   const [theme, setTheme] = useState("light");
+  const [IsTherUserId, setIsTherUserId] = useState("");
 
   return (
     <TodoContext.Provider
@@ -42,6 +47,8 @@ export const TodoContextProvider = ({
         setIsSortedAsd,
         theme,
         setTheme,
+        IsTherUserId,
+        setIsTherUserId,
       }}
     >
       {children}

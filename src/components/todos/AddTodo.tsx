@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import toast from "react-hot-toast";
 import { TodoContext } from "../../context/ContextTodo.js";
@@ -10,6 +10,7 @@ interface UserInputs {
   date: number | string;
   isDone: boolean;
   _id?: string;
+  userId: string;
 }
 
 function addTodoHandler(
@@ -32,6 +33,7 @@ function addTodoHandler(
         todo: "",
         date: new Date().toLocaleDateString(),
         isDone: false,
+        userId: userInputs.userId,
       });
     });
   }
@@ -48,14 +50,33 @@ function onChangeHandler(
   });
 }
 
+// main component
 const AddTodo = () => {
   const { setIsRender, isLoading } = useContext(TodoContext);
   const [userInputs, setUserInput] = useState<UserInputs>({
     todo: "",
     date: new Date().toLocaleDateString(),
     isDone: false,
+    userId: "",
   });
   const [inputLength, setInputLength] = useState("");
+
+  useEffect(() => {
+    if (localStorage.getItem("user_id")) {
+      const response: string | null = localStorage.getItem("user_id");
+      const { id } = JSON.parse(response!);
+
+      setUserInput((preValue) => {
+        return { ...preValue, userId: id };
+      });
+    } else {
+      console.log("userId was changed");
+
+      setUserInput((preValue) => {
+        return { ...preValue };
+      });
+    }
+  }, [userInputs.todo]);
 
   return (
     <div className="add-todo">

@@ -3,22 +3,33 @@ import { useContext, useEffect, useState } from "react";
 import Todo from "./Todo";
 import Loading from "../notifications/Loading";
 import { TodoContext } from "../../context/ContextTodo";
-import { getAllTodo } from "../../utils/api";
+import { getAllTodo, getUserById } from "../../utils/api";
+import { useNavigate } from "react-router-dom";
 
 interface Todos {
   todo: string;
   date: number;
   isDone: boolean;
   _id?: string | number;
+  userId: string;
+}
+
+interface TodosArray {
+  todos: Todos[];
 }
 
 function getAllTodoHandler(
   setToDoList: React.Dispatch<React.SetStateAction<Todos[] | []>>,
-  setIsLoading: React.Dispatch<boolean>
+  setIsLoading: React.Dispatch<boolean>,
+  userId: string
 ) {
   getAllTodo()
-    .then(({ todos }) => {
-      const orderTodos: Todos[] = todos.reverse();
+    .then(({ todos }: TodosArray) => {
+      const filterTodos: Todos[] = todos.filter((todo) => {
+        return todo.userId === userId;
+      });
+
+      const orderTodos = filterTodos.reverse();
       setToDoList(orderTodos);
       setIsLoading(false);
     })
@@ -28,13 +39,35 @@ function getAllTodoHandler(
 }
 
 const TodoList = () => {
-  const { isRender, setIsRender, setIsLoading, isSortedAsd, theme } =
-    useContext(TodoContext);
+  const {
+    isRender,
+    setIsRender,
+    setIsLoading,
+    isSortedAsd,
+    theme,
+    setIsTherUserId,
+  } = useContext(TodoContext);
   const [color, setColor] = useState("#a9a29c84");
   const [toDoList, setToDoList] = useState<Todos[] | []>([]);
+  const [userId, setUserId] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getAllTodoHandler(setToDoList, setIsLoading);
+    if (!localStorage.getItem("user_id")) {
+      setUserId("");
+      navigate("/");
+    } else {
+      setUserId("yes there is userId");
+      setIsTherUserId("yes there is userId");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (localStorage.getItem("user_id")) {
+      const res = localStorage.getItem("user_id");
+      const { id } = JSON.parse(res!);
+      getAllTodoHandler(setToDoList, setIsLoading, id);
+    }
   }, [isRender]);
 
   useEffect(() => {
@@ -42,9 +75,11 @@ const TodoList = () => {
   }, [isSortedAsd]);
 
   return (
-    <section className={`todo-list ${theme === "dark" && "todo-list--light"}`}>
-      {toDoList.length ? (
-        <>
+    <>
+      {userId.length ? (
+        <section
+          className={`todo-list ${theme === "dark" && "todo-list--light"}`}
+        >
           <div className="todo-list__color">
             <div
               className="div-1"
@@ -85,11 +120,11 @@ const TodoList = () => {
               />
             );
           })}
-        </>
+        </section>
       ) : (
         <Loading />
       )}
-    </section>
+    </>
   );
 };
 

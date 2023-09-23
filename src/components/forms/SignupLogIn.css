@@ -1,0 +1,36 @@
+.sign-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+  background-color: #a9a29c84;
+  /* background-color: #45454567; */
+}
+.sign-login--heading {
+  margin-bottom: 1rem;
+}
+.sign-login--btn {
+  font-size: 1.2rem;
+  padding: 0.5rem 0;
+  margin: 0.5rem 0;
+  width: 12rem;
+  color: white;
+  background-color: #454545;
+  border: 0.4rem solid #a9a29c84;
+  border-radius: 10rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  text-decoration: none;
+}
+.sign-login--btn:active {
+  transform: scale(1.2);
+}
+
+.sign-login--btn-dark {
+  color: #454545;
+}
+.sign-login--dark {
+  background-color: #292929;
+}

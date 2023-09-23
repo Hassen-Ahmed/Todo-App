@@ -1,26 +1,31 @@
 import axios from "axios";
 
 const todoApi = axios.create({
-  baseURL: "https://api-todo-app-vqgm.onrender.com/",
+  baseURL: "http://localhost:9090/",
+  // baseURL: "https://api-todo-app-vqgm.onrender.com/",
 });
-
-export const getAllTodo = () => {
-  return todoApi.get("/todo").then(({ data }) => {
-    return data;
-  });
-};
 
 interface Todo {
   todo: string;
   date: number | string;
   isDone: boolean;
   _id?: string | number;
+  userId?: string;
 }
 
-export const postTodo = ({ todo, date = Date.now(), isDone }: Todo) => {
-  return todoApi.post(`/todo`, { todo, date, isDone }).then(({ data }) => {
+// /todo
+export const getAllTodo = () => {
+  return todoApi.get("/todo").then(({ data }) => {
     return data;
   });
+};
+
+export const postTodo = ({ todo, date = Date.now(), isDone, userId }: Todo) => {
+  return todoApi
+    .post(`/todo`, { todo, date, isDone, userId })
+    .then(({ data }) => {
+      return data;
+    });
 };
 
 export const deleteTodoById = (id: number | string | undefined) => {
@@ -33,6 +38,26 @@ export const patchTodoById = (
   isDone: boolean
 ) => {
   return todoApi.patch(`/todo/${id}`, { todo, isDone }).then(({ data }) => {
+    return data;
+  });
+};
+
+// /user
+
+export const getUserById = (id: number | string | undefined) => {
+  return todoApi.get(`/user/${id}`).then(({ data }) => {
+    return data;
+  });
+};
+
+export const getUserByUsername = (username: string) => {
+  return todoApi.get("/user", { params: { username } }).then(({ data }) => {
+    return data;
+  });
+};
+
+export const postUser = (username: string, password: string) => {
+  return todoApi.post(`/user`, { username, password }).then(({ data }) => {
     return data;
   });
 };
