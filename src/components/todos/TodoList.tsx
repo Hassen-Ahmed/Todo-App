@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import Todo from "./Todo";
 import Loading from "../notifications/Loading";
 import { TodoContext } from "../../context/ContextTodo";
-import { getAllTodo, getUserById } from "../../utils/api";
+import { getAllTodo } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 
 interface Todos {
