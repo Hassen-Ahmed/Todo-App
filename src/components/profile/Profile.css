@@ -22,7 +22,7 @@
   transform: scale(1.2);
 }
 
-.profile a {
+.profile button {
   width: 10rem;
   color: white;
   text-decoration: none;
