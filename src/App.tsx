@@ -8,10 +8,10 @@ import { Route, Routes } from "react-router-dom";
 import { Suspense, lazy } from "react";
 
 const Profile = lazy(() => import("./components/profile/Profile"));
-const SignLogIn = lazy(() => import("./components/signlogin/SignLogIn"));
+const SignLogIn = lazy(() => import("./components/forms/SignupLogIn"));
 const TodoList = lazy(() => import("./components/todos/TodoList"));
-const Signup = lazy(() => import("./components/signlogin/Signup"));
-const LogIn = lazy(() => import("./components/signlogin/LogIn"));
+const Signup = lazy(() => import("./components/forms/Signup"));
+const LogIn = lazy(() => import("./components/forms/LogIn"));
 
 function App() {
   return (
