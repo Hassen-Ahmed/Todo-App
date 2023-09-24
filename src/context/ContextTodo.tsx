@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { deleteTodoById } from "../utils/api";
 
 interface ContextType {
   isRender: boolean;
@@ -36,6 +37,7 @@ export const TodoContextProvider = ({
   const [theme, setTheme] = useState("light");
   const [IsTherUserId, setIsTherUserId] = useState("");
 
+  deleteTodoById("starter_id");
   return (
     <TodoContext.Provider
       value={{
