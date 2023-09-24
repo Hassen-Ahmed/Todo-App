@@ -17,6 +17,7 @@ interface FormInput {
 }
 
 export default function LogIn() {
+  const [loading, setLoading] = useState(false);
   const { setIsTherUserId } = useContext(TodoContext);
   const [values, setValues] = useState<Record<string, string>>({
     username: "",
@@ -64,8 +65,10 @@ export default function LogIn() {
 
   const handlerOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
     getUserByUsername(values.username).then(({ user }) => {
+      setLoading(false);
       if (user.length) {
         const { _id, password } = user[0];
         if (password === values.password) {
@@ -99,6 +102,7 @@ export default function LogIn() {
         })}
 
         <button>LogIn</button>
+        {loading && <p>Loadding...</p>}
       </div>
     </form>
   );

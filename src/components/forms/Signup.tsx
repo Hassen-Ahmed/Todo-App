@@ -17,6 +17,7 @@ interface FormInput {
 }
 
 export default function Signup() {
+  const [loading, setLoading] = useState(false);
   const { setIsTherUserId } = useContext(TodoContext);
   const [values, setValues] = useState<Record<string, string>>({
     username: "",
@@ -75,8 +76,10 @@ export default function Signup() {
 
   const handlerOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
     getUserByUsername(values.username).then(({ user }) => {
+      setLoading(false);
       if (user.length) {
         alert("This user already take!");
       } else {
@@ -107,6 +110,7 @@ export default function Signup() {
           );
         })}
         <button>SignUp</button>
+        {loading && <p>Loadding...</p>}
       </div>
     </form>
   );
