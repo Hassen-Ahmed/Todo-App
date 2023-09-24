@@ -2,7 +2,6 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  /* background-color: orange; */
   position: relative;
   z-index: 200;
 }

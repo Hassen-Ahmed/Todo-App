@@ -19,8 +19,6 @@ body {
   width: 100vw;
   padding: 3rem;
   background-color: #d5ccc7;
-  /* background-color: #454545; */
-  /* background-color: #415a77; */
   font-family: "Roboto Mono", monospace;
   transition: all 0.2s ease;
 }
@@ -38,8 +36,6 @@ body {
 
 .add-todo {
   background-color: #333333;
-  /* background-color: #cdcdcd; */
-  /* background-color: #1b263b; */
   width: 80vw;
 
   padding: 1rem;
@@ -83,7 +79,6 @@ body {
 }
 .todo-list {
   background-color: #f6f6f6;
-  /* background-color: #778da9; */
   width: 80vw;
   margin: auto;
   height: auto;
@@ -130,14 +125,11 @@ body {
   margin-bottom: 40px;
   padding: 20px 40px;
   padding-bottom: 50px;
-  /* background-color: #a9a29c84; */
-  /* background-color: #d5ccc7; */
   position: relative;
   flex-grow: 1;
   box-shadow: 0.2rem 0.3rem 0.3rem rgba(0, 0, 0, 0.25);
 
   color: #4a4a4a;
-  /* color: #d0d0d0; */
 }
 .todo button {
   position: absolute;
