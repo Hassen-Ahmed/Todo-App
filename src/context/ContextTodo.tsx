@@ -37,7 +37,7 @@ export const TodoContextProvider = ({
   const [theme, setTheme] = useState("light");
   const [IsTherUserId, setIsTherUserId] = useState("");
 
-  deleteTodoById("starter_id");
+  deleteTodoById("starter_id").then(() => console.log("Server is Running!"));
   return (
     <TodoContext.Provider
       value={{
