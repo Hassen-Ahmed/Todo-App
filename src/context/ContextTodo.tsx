@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { deleteTodoById } from "../utils/api";
 
 interface ContextType {
@@ -37,7 +37,10 @@ export const TodoContextProvider = ({
   const [theme, setTheme] = useState("light");
   const [IsTherUserId, setIsTherUserId] = useState("");
 
-  deleteTodoById("starter_id").then(() => console.log("Server is Running!"));
+  useEffect(() => {
+    deleteTodoById("starter_id").then(() => console.log("Server is Running!"));
+  }, []);
+
   return (
     <TodoContext.Provider
       value={{
