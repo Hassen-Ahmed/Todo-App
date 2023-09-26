@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { deleteTodoById } from "../utils/api";
+import { getUserByUsername } from "../utils/api";
 
 interface ContextType {
   isRender: boolean;
@@ -38,7 +38,9 @@ export const TodoContextProvider = ({
   const [IsTherUserId, setIsTherUserId] = useState("");
 
   useEffect(() => {
-    deleteTodoById("starter_id").then(() => console.log("Server is Running!"));
+    getUserByUsername("fakeusername").then(() =>
+      console.log("Server is Running!")
+    );
   }, []);
 
   return (
