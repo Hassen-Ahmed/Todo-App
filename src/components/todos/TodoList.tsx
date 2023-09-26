@@ -33,9 +33,7 @@ function getAllTodoHandler(
       setToDoList(orderTodos);
       setIsLoading(false);
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch(() => {});
 }
 
 const TodoList = () => {

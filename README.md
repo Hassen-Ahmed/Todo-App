@@ -1,6 +1,6 @@
 # Sticky Todo
 
-This is Todo app project. I consist lots of features and also to build this app I did use different Back End and Front End technologies and packages i.e.,
+This project is a Todo app, encompassing a wide array of features. During its development, I employed various Back End and Front End technologies and packages, including...
 
 ### Front End
 
@@ -13,6 +13,8 @@ This is Todo app project. I consist lots of features and also to build this app 
 - React Lazy loading
 - React hot toast
 - React icons
+- vite
+- axios
 
 ### Back End
 

@@ -70,8 +70,6 @@ const AddTodo = () => {
         return { ...preValue, userId: id };
       });
     } else {
-      console.log("userId was changed");
-
       setUserInput((preValue) => {
         return { ...preValue };
       });

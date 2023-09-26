@@ -38,9 +38,7 @@ export const TodoContextProvider = ({
   const [IsTherUserId, setIsTherUserId] = useState("");
 
   useEffect(() => {
-    getUserByUsername("fakeusername").then(() =>
-      console.log("Server is Running!")
-    );
+    getUserByUsername("fakeusername");
   }, []);
 
   return (
