@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import "./SignupLogIn.css";
+import "./SignupLogIn.scss";
 import { useEffect } from "react";
 export default function SignLogIn() {
   const navigate = useNavigate();
