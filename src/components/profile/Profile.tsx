@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import "./Profile.css";
 import { useContext, useEffect, useState } from "react";
 import { TodoContext } from "../../context/ContextTodo";
 import { getUserById } from "../../utils/api";
+import "./Profile.scss";
 
 export default function Profile() {
   const [username, setUsername] = useState("");

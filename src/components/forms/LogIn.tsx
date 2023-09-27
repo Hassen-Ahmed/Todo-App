@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import "./LogIn.css";
 import { useContext, useEffect, useState } from "react";
 import FormInput from "./FormInput";
 import { getUserByUsername } from "../../utils/api";
 import { TodoContext } from "../../context/ContextTodo";
+import "./LogIn.scss";
 
 interface FormInput {
   id: number;

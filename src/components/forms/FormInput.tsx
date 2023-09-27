@@ -1,3 +1,6 @@
+import { useState } from "react";
+import "./FormInput.scss";
+
 interface FormInput {
   id: number;
   errormessage: string;
@@ -6,9 +9,6 @@ interface FormInput {
   name: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
-
-import { useState } from "react";
-import "./FormInput.css";
 
 export default function FormInput(props: FormInput) {
   const [focused, setFocused] = useState(false);

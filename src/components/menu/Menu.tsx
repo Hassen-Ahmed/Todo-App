@@ -7,9 +7,9 @@ import {
 } from "react-icons/bs";
 import { AiOutlineHome } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
-import "./Menu.css";
 import { TodoContext } from "../../context/ContextTodo";
 import { Link } from "react-router-dom";
+import "./Menu.scss";
 
 export default function Menu() {
   const [isDropDown, setIsDropDown] = useState(false);

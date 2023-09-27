@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400;600;700&family=Roboto:wght@300;400;500;900&display=swap");
 
+@import "./components/style/abstract/mixins";
 *,
 *::after,
 *::before {
@@ -12,10 +13,7 @@ html {
   font-size: 100%;
 }
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include flex_col;
   width: 100vw;
   padding: 3rem;
   background-color: #d5ccc7;
@@ -37,11 +35,12 @@ body {
 .add-todo {
   background-color: #333333;
   width: 80vw;
-
   padding: 1rem;
+
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   position: relative;
@@ -188,9 +187,8 @@ body {
 .github-log {
   margin: 2rem;
   font-size: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+  @include flex_row;
 }
 
 .github-log p {
@@ -208,9 +206,9 @@ body {
 
   width: 1.8rem;
   height: 1.8rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+  @include flex_row;
+
   border-radius: 50%;
   transition: all 0.2s ease;
 }

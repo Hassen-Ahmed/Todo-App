@@ -5,7 +5,7 @@ This project is a Todo app, encompassing a wide array of features. During its de
 ### Front End
 
 - Html
-- Css
+- Css / Sass
 - Javacript
 - Typescript
 - React.js

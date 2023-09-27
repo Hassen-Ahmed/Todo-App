@@ -1,6 +1,6 @@
 import AddTodo from "./components/todos/AddTodo";
 import Timer from "./components/Timer";
-import "./App.css";
+import "./App.scss";
 import { Toaster } from "react-hot-toast";
 import Footer from "./components/Footer";
 import Menu from "./components/menu/Menu";
