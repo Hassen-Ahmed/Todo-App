@@ -1,6 +1,7 @@
+@use "./components/style/abstract/mixins" as mixins;
+
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400;600;700&family=Roboto:wght@300;400;500;900&display=swap");
 
-@import "./components/style/abstract/mixins";
 *,
 *::after,
 *::before {
@@ -13,7 +14,7 @@ html {
   font-size: 100%;
 }
 body {
-  @include flex_col;
+  @include mixins.flex_col;
   width: 100vw;
   padding: 3rem;
   background-color: #d5ccc7;
@@ -188,7 +189,7 @@ body {
   margin: 2rem;
   font-size: 2rem;
 
-  @include flex_row;
+  @include mixins.flex_row;
 }
 
 .github-log p {
@@ -207,7 +208,7 @@ body {
   width: 1.8rem;
   height: 1.8rem;
 
-  @include flex_row;
+  @include mixins.flex_row;
 
   border-radius: 50%;
   transition: all 0.2s ease;

@@ -1,8 +1,8 @@
-@import "../style/abstract/variable";
-@import "../style/abstract/mixins";
+@use "../style/abstract/variable" as var;
+@use "../style/abstract/mixins" as mixins;
 
 .sign-login {
-  @include flex_col;
+  @include mixins.flex_col;
   padding: 2rem 0;
   background-color: #a9a29c84;
 
@@ -15,7 +15,7 @@
     margin: 0.5rem 0;
     width: 12rem;
     color: white;
-    background-color: $grey-color-01;
+    background-color: var.$grey-color-01;
     border: 0.4rem solid #a9a29c84;
     border-radius: 10rem;
     transition: all 0.2s ease;
@@ -27,7 +27,7 @@
     transform: scale(1.2);
   }
   &--btn-dark {
-    color: $grey-color-01;
+    color: var.$grey-color-01;
   }
   &--dark {
     background-color: #292929;

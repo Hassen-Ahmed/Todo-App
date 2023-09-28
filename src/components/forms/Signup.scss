@@ -1,4 +1,4 @@
-@import "../style/abstract/mixins";
+@use "../style/abstract/mixins" as mixins;
 
 .signup-form--container {
   display: flex;
@@ -6,7 +6,7 @@
 }
 
 .signup-form {
-  @include flex_col;
+  @include mixins.flex_col;
 
   background-color: #a9a29c84;
   width: 20rem;

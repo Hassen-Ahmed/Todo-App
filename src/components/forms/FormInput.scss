@@ -1,6 +1,7 @@
-@import "../style/abstract/mixins";
+@use "../style/abstract/mixins" as mixins;
+
 .form-input {
-  @include flex_col;
+  @include mixins.flex_col;
   width: 100%;
 }
 
