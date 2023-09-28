@@ -95,6 +95,7 @@ const AddTodo = () => {
       />
       {!isLoading ? (
         <button
+          aria-label="button to add todo"
           id="button__todo"
           onClick={() => addTodoHandler(userInputs, setUserInput, setIsRender)}
         >

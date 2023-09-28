@@ -100,7 +100,7 @@ export default function LogIn() {
           );
         })}
 
-        <button>LogIn</button>
+        <button aria-label="login button for forminputs">LogIn</button>
         {loading && <p>Loadding...</p>}
       </div>
     </form>

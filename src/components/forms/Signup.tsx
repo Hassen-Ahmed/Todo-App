@@ -108,7 +108,7 @@ export default function Signup() {
             />
           );
         })}
-        <button>SignUp</button>
+        <button aria-label="signup button for forminputs">SignUp</button>
         {loading && <p>Loadding...</p>}
       </div>
     </form>

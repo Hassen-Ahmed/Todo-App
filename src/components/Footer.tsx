@@ -7,6 +7,7 @@ export default function Footer() {
   return (
     <div className="github-log">
       <a
+        aria-label="button or anchor to navigate github page of this app"
         style={{ color: `${theme === "light" ? "#4a4a4a" : "#989898"}` }}
         href="https://github.com/Hassen-Ahmed/Todo-App/tree/main"
         target="_blank"

@@ -12,10 +12,10 @@ export default function SignLogIn() {
   return (
     <div className="sign-login">
       <h1 className="sign-login--heading">Hello, welcome!</h1>
-      <Link className="sign-login--btn" to="/login">
+      <Link aria-label="login button" className="sign-login--btn" to="/login">
         LogIn
       </Link>
-      <Link className="sign-login--btn" to="/signup">
+      <Link aria-label="signup button" className="sign-login--btn" to="/signup">
         SignUp
       </Link>
     </div>

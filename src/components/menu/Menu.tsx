@@ -29,6 +29,7 @@ export default function Menu() {
         <div className="menu">
           {isProfile ? (
             <Link
+              aria-label="button for navigating to todos page"
               to="/todo"
               style={{ color: "#333333d6" }}
               className={`${isDropDown ? " btn" : " origin-point"}`}
@@ -38,6 +39,7 @@ export default function Menu() {
             </Link>
           ) : (
             <Link
+              aria-label="button for navigating to profile page"
               to="/profile"
               style={{ color: "#333333d6" }}
               className={`${isDropDown ? " btn" : " origin-point"}`}

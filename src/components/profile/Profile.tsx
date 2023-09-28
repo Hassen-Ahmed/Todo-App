@@ -37,7 +37,11 @@ export default function Profile() {
         <>
           <p>Profile</p>
           <h2>{username || "Username"}</h2>
-          <button className="logout-btn" onClick={handlerLogout}>
+          <button
+            aria-label="button for logout"
+            className="logout-btn"
+            onClick={handlerLogout}
+          >
             logout
           </button>
         </>
