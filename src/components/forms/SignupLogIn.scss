@@ -1,5 +1,5 @@
-@use "../style/abstract/variable" as var;
-@use "../style/abstract/mixins" as mixins;
+@use "../../style/abstract/variable" as var;
+@use "../../style/abstract/mixins" as mixins;
 
 .sign-login {
   @include mixins.flex_col;
