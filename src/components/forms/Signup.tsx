@@ -3,7 +3,6 @@ import FormInput from "./FormInput";
 import { useContext, useEffect, useState } from "react";
 import { getUserByUsername, postUser } from "../../utils/api";
 import { TodoContext } from "../../context/ContextTodo";
-import "./Signup.scss";
 
 interface FormInput {
   id: number;

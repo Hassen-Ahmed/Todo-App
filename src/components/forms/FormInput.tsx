@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./FormInput.scss";
 
 interface FormInput {
   id: number;
