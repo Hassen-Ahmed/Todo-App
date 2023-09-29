@@ -6,7 +6,6 @@ import Footer from "./components/Footer";
 import Menu from "./components/menu/Menu";
 import { Route, Routes } from "react-router-dom";
 import { Suspense, lazy, useEffect } from "react";
-import { getAllTodo } from "./utils/api";
 
 const Profile = lazy(() => import("./components/profile/Profile"));
 const SignLogIn = lazy(() => import("./components/forms/SignupLogIn"));
@@ -16,10 +15,7 @@ const LogIn = lazy(() => import("./components/forms/LogIn"));
 
 function App() {
   useEffect(() => {
-    getAllTodo().then((data) => {
-      console.log(data);
-      console.log(document.cookie);
-    });
+    console.log(document.cookie);
   }, []);
   return (
     <main className="app">
