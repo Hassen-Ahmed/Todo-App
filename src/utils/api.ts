@@ -15,7 +15,7 @@ interface Todo {
 
 // /todo
 export const getAllTodo = () => {
-  return todoApi.get("/todo").then(({ data }) => {
+  return todoApi.get("/todo", { withCredentials: true }).then(({ data }) => {
     return data;
   });
 };
