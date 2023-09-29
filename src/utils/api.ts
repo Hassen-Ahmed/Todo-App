@@ -2,7 +2,7 @@ import axios from "axios";
 
 const todoApi = axios.create({
   // baseURL: "http://localhost:9090/",
-  baseURL: "https://api-todo-app-vqgm.onrender.com/",
+  baseURL: "https://api-todo-app-vqgm.onrender.com",
 });
 
 interface Todo {
