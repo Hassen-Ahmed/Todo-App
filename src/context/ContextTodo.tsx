@@ -1,5 +1,4 @@
-import { createContext, useEffect, useState } from "react";
-import { getUserByUsername } from "../utils/api";
+import { createContext, useState } from "react";
 
 interface ContextType {
   isRender: boolean;
@@ -36,10 +35,6 @@ export const TodoContextProvider = ({
   const [isSortedAsd, setIsSortedAsd] = useState(true);
   const [theme, setTheme] = useState("light");
   const [IsTherUserId, setIsTherUserId] = useState("");
-
-  useEffect(() => {
-    getUserByUsername("fakeusername");
-  }, []);
 
   return (
     <TodoContext.Provider

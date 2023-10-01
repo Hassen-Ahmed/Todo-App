@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const todoApi = axios.create({
-  // baseURL: "http://localhost:9090/",
-  baseURL: "https://api-todo-app-vqgm.onrender.com",
+  baseURL: "http://localhost:9090/",
+  // baseURL: "https://api-todo-app-vqgm.onrender.com",
 });
 
 interface Todo {
@@ -14,8 +14,9 @@ interface Todo {
 }
 
 // /todo
+// { withCredentials: true }
 export const getAllTodo = () => {
-  return todoApi.get("/todo", { withCredentials: true }).then(({ data }) => {
+  return todoApi.get("/todo").then(({ data }) => {
     return data;
   });
 };
